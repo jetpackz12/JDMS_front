@@ -5,13 +5,13 @@
         <div class="flex justify-content-between align-items-center">
           <h5>
             <i class="pi pi-building"></i>
-            Rooms
+            Manage Rooms
           </h5>
           <Button
             label="Add Room"
             icon="pi pi-plus-circle"
             style="width: auto"
-            @click="openAddDialog"
+            @click="openAddDialog()"
           />
         </div>
         <hr />
@@ -97,16 +97,16 @@
                           label="Edit"
                           :disabled="item.availability === 0"
                           class="flex-auto md:flex-initial white-space-nowrap"
-                          @click="openUpdateDialog"
+                          @click="openUpdateDialog(item)"
                         ></Button>
                         <Button
                           :icon="
                             item.status === 1 ? 'pi pi-times' : 'pi pi-check'
                           "
-                          :label="item.status === 1 ? 'Disable' : 'Enabled'"
+                          :label="item.status === 1 ? 'Disable' : 'Enable'"
                           :disabled="item.availability === 0"
                           class="flex-auto md:flex-initial white-space-nowrap"
-                          @click="openDeleteDialog"
+                          @click="openDeleteDialog(item)"
                         ></Button>
                       </div>
                     </div>
@@ -176,16 +176,16 @@
                           label="Edit"
                           :disabled="item.availability === 0"
                           class="flex-auto white-space-nowrap"
-                          @click="openUpdateDialog"
+                          @click="openUpdateDialog(item)"
                         ></Button>
                         <Button
                           :icon="
                             item.status === 1 ? 'pi pi-times' : 'pi pi-check'
                           "
-                          :label="item.status === 1 ? 'Disable' : 'Enabled'"
+                          :label="item.status === 1 ? 'Disable' : 'Enable'"
                           :disabled="item.availability === 0"
                           class="flex-auto md:flex-initial white-space-nowrap"
-                          @click="openDeleteDialog"
+                          @click="openDeleteDialog(item)"
                         ></Button>
                       </div>
                     </div>
@@ -200,24 +200,23 @@
   </div>
 
   <!-- Dailogs -->
-  <AddDailog
+  <AddRoomDialog
     v-model:visible="displayAddDialog"
     @formSubmit="closeDialog()"
     :formData="formData"
   />
 
-  <EditDailog
+  <EditRoomDialog
     v-model:visible="displayUpdateDialog"
     @formSubmit="closeDialog()"
     :formData="formData"
   />
 
-  <DeleteDailog
+  <DeleteRoomDialog
     v-model:visible="displayDeleteDialog"
     @formSubmit="closeDialog()"
     :formData="formData"
   />
-
 </template>
 
 <script>
@@ -241,6 +240,10 @@ export default {
       displayDeleteDialog: false,
       roomService: new RoomService(),
       formData: this.getInitialFormData(),
+      typeValues: [
+        { label: "Standard", value: "Standard" },
+        { label: "Premium", value: "Premium" },
+      ],
     };
   },
   methods: {
@@ -249,11 +252,8 @@ export default {
         room: null,
         description: null,
         capacity: null,
-        typeValues: [
-          { name: "Standard", code: "1" },
-          { name: "Premium", code: "2" },
-        ],
-        typeValue: null,
+        typeValues: this.typeValues,
+        type: null,
         price: null,
       };
     },
@@ -284,15 +284,20 @@ export default {
       this.formData = this.getInitialFormData();
       this.displayAddDialog = true;
     },
-    openUpdateDialog() {
-      this.formData = this.getInitialFormData();
+    openUpdateDialog(editData) {
+      this.formData = { ...editData, typeValues: this.typeValues };
       this.displayUpdateDialog = true;
     },
-    openDeleteDialog() {
+    openDeleteDialog(editData) {
+      this.formData = editData;
       this.displayDeleteDialog = true;
+      console.log(this.formData);
     },
     closeDialog() {
-      this.displayAddDialog = this.displayUpdateDialog = this.displayDeleteDialog = false;
+      this.displayAddDialog =
+        this.displayUpdateDialog =
+        this.displayDeleteDialog =
+          false;
     },
   },
   mounted() {

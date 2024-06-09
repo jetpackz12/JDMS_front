@@ -108,9 +108,16 @@ import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
 
 // import BlockViewer from '@/components/BlockViewer.vue';
-import AddDailog from '@/components/local/room/AddDailog.vue';
-import EditDailog from '@/components/local/room/EditDailog.vue';
-import DeleteDailog from '@/components/local/room/DeleteDailog.vue';
+import TableToolKit from '@/components/global/TableToolKit.vue';
+
+import AddRoomDialog from '@/components/local/rooms/AddRoomDialog.vue';
+import EditRoomDialog from '@/components/local/rooms/EditRoomDialog.vue';
+import DeleteRoomDialog from '@/components/local/rooms/DeleteRoomDialog.vue';
+
+import AddTenantDialog from '@/components/local/tenants/AddTenantDialog.vue';
+import EditTenantDialog from '@/components/local/tenants/EditTenantDialog.vue';
+import DeleteTenantDialog from '@/components/local/tenants/DeleteTenantDialog.vue';
+import DeleteTenantsDialog from '@/components/local/tenants/DeleteTenantsDialog.vue';
 
 import '@/assets/styles.scss';
 
@@ -128,9 +135,16 @@ app.directive('ripple', Ripple);
 app.directive('styleclass', StyleClass);
 
 // app.component('BlockViewer', BlockViewer);
-app.component('AddDailog', AddDailog);
-app.component('EditDailog', EditDailog);
-app.component('DeleteDailog', DeleteDailog);
+app.component('TableToolKit', TableToolKit);
+
+app.component('AddRoomDialog', AddRoomDialog);
+app.component('EditRoomDialog', EditRoomDialog);
+app.component('DeleteRoomDialog', DeleteRoomDialog);
+
+app.component('AddTenantDialog', AddTenantDialog);
+app.component('EditTenantDialog', EditTenantDialog);
+app.component('DeleteTenantDialog', DeleteTenantDialog);
+app.component('DeleteTenantsDialog', DeleteTenantsDialog);
 
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);

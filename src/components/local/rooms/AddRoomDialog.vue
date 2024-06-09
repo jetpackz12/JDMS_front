@@ -1,14 +1,9 @@
 <template>
-  <Dialog
-    header="Edit Room"
-    :breakpoints="{ '960px': '75vw' }"
-    :style="{ width: '30vw' }"
-    :modal="true"
-  >
+  <Dialog header="Add Room" :style="{ width: '30vw' }" :modal="true">
     <hr />
     <div class="flex justify-content-center">
       <Image
-        :src="'/demo/images/galleria/galleria11.jpg'"
+        src="/layout/images/imageicon.jpg"
         alt="Image"
         width="250"
         preview
@@ -23,7 +18,7 @@
         name="demo[]"
         accept="image/*"
         :maxFileSize="1000000"
-        @uploader="onUpload"
+        @uploader="onUpload()"
         customUpload
         class="w-10rem sm:w-14rem lg:w-18rem"
       />
@@ -43,7 +38,7 @@
     <div class="field flex flex-column">
       <label for="capacity">Capacity</label>
       <InputNumber
-        v-model.lazy.trim="formData.capacity"
+        v-model.lazy="formData.capacity"
         inputId="withoutgrouping"
         :useGrouping="false"
         id="capacity"
@@ -52,17 +47,18 @@
     <div class="field flex flex-column">
       <label for="type">Type</label>
       <Dropdown
-        v-model.lazy.trim="formData.typeValue"
+        v-model.lazy="formData.type"
         :options="formData.typeValues"
         id="type"
-        optionLabel="name"
+        optionLabel="label"
+        optionValue="value"
         placeholder="Select"
       />
     </div>
     <div class="field flex flex-column">
       <label for="price">Price</label>
       <InputNumber
-        v-model.lazy.trim="formData.price"
+        v-model.lazy="formData.price"
         inputId="integeronly"
         id="price"
       />
@@ -70,7 +66,7 @@
     <template #footer>
       <Button
         label="Submit"
-        @click="submit"
+        @click="submit()"
         icon="pi pi-send"
         class="p-button-outlined"
       />
@@ -83,15 +79,18 @@ import { useToast } from "primevue/usetoast";
 
 export default {
   props: {
-    formData: Object,
+    formData: {
+      type: Object,
+      default: {},
+    },
   },
   emits: ["formSubmit"],
   methods: {
     submit() {
       this.$toast.add({
         severity: "success",
-        summary: "Update Room",
-        detail: "You have successfully update this room.",
+        summary: "Adding Room",
+        detail: "You have successfully add new room.",
         life: 3000,
       });
       this.$emit("formSubmit");
