@@ -233,7 +233,6 @@ export default {
       });
     },
     openAddDialog() {
-      this.data = {};
       this.displayAddDialog = true;
       this.formData = this.getInitialFormData();
     },
@@ -242,7 +241,7 @@ export default {
       this.formData = { ...editdata, rooms: this.rooms };
     },
     openDeleteDataDialog(editdata) {
-      this.formData = editdata;
+      this.formData = { full_name:editdata.full_name, id:editdata.id };
       this.displayDeleteDataDialog = true;
     },
     confirmDeleteSelected() {
@@ -332,7 +331,7 @@ export default {
   created() {
     this.initFilters();
     const tenantService = new TenantService();
-    tenantService.getRooms().then((data) => {
+    tenantService.getTenants().then((data) => {
       this.datas = data.filter((item) => {
         return item.status === 1;
       });

@@ -119,6 +119,11 @@ import EditTenantDialog from '@/components/local/tenants/EditTenantDialog.vue';
 import DeleteTenantDialog from '@/components/local/tenants/DeleteTenantDialog.vue';
 import DeleteTenantsDialog from '@/components/local/tenants/DeleteTenantsDialog.vue';
 
+import AddGuestDialog from '@/components/local/guests/AddGuestDialog.vue';
+import EditGuestDialog from '@/components/local/guests/EditGuestDialog.vue';
+import DeleteGuestDialog from '@/components/local/guests/DeleteGuestDialog.vue';
+import DeleteGuestsDialog from '@/components/local/guests/DeleteGuestsDialog.vue';
+
 import '@/assets/styles.scss';
 
 const app = createApp(App);
@@ -145,6 +150,11 @@ app.component('AddTenantDialog', AddTenantDialog);
 app.component('EditTenantDialog', EditTenantDialog);
 app.component('DeleteTenantDialog', DeleteTenantDialog);
 app.component('DeleteTenantsDialog', DeleteTenantsDialog);
+
+app.component('AddGuestDialog', AddGuestDialog);
+app.component('EditGuestDialog', EditGuestDialog);
+app.component('DeleteGuestDialog', DeleteGuestDialog);
+app.component('DeleteGuestsDialog', DeleteGuestsDialog);
 
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
