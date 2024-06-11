@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { usePrimeVue } from 'primevue/config';
 import { useLayout } from '@/layout/composables/layout';
 
@@ -27,6 +27,14 @@ const compactMaterial = ref(false);
 const primaryFocusRing = ref(true);
 
 const { setScale, layoutConfig } = useLayout();
+
+onMounted(() => {
+    const storedTheme = localStorage.getItem("selectedTheme");
+    const themeLink = document.getElementById("theme-css");
+    if (storedTheme) {
+      themeLink.href = `/themes/${storedTheme}/theme.css`;
+    }
+});
 
 const onConfigButtonClick = () => {
     visible.value = !visible.value;
@@ -62,6 +70,8 @@ const onDarkModeChange = (value) => {
 
     layoutConfig.darkTheme.value = value;
     onChangeTheme(newThemeName, value);
+
+    localStorage.setItem('darkTheme', value);
 };
 const changeTheme = (theme, color) => {
     let newTheme, dark;
@@ -79,6 +89,8 @@ const changeTheme = (theme, color) => {
     dark = layoutConfig.darkTheme.value;
 
     onChangeTheme(newTheme, dark);
+    
+    localStorage.setItem('selectedTheme', newTheme);
 };
 const isThemeActive = (themeFamily, color) => {
     let themeName;
@@ -155,8 +167,9 @@ const onFocusRingColorChange = (value) => {
             </section>
 
             <section class="py-4 border-bottom-1 surface-border">
-                <div class="text-xl font-semibold mb-3">Themes</div>
-                <div class="flex align-items-center gap-2 mb-3">
+                <div class="text-xl font-semibold">Themes</div>
+                <span class="text-red-500 mb-3">*If you change mode(Dark Mode) please select theme color.</span>
+                <div class="flex align-items-center gap-2 my-3">
                     <img src="https://primefaces.org/cdn/primevue/images/themes/aura.png" alt="Aura" style="width: 1.5rem" />
                     <span class="font-medium">Aura</span>
                 </div>
