@@ -251,7 +251,6 @@ export default {
     closeDialog() {
       this.displayAddDialog =
         this.displayUpdateDialog =
-        this.displayDeleteDialog =
         this.displayDeleteDataDialog =
         this.displayDeleteDatasDialog =
           false;

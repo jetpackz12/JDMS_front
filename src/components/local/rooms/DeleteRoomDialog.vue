@@ -5,10 +5,14 @@
         class="pi pi-exclamation-triangle mr-3"
         style="font-size: 2rem; color: #f97316"
       />
-      <span>Are you sure you want to <b>{{ formData.status === 1 ? "disable" : "enable" }}</b> this room?</span>
+      <span
+        >Are you sure you want to
+        <b>{{ formData.status === 1 ? "disable" : "enable" }}</b> this
+        room?</span
+      >
     </div>
     <template #footer>
-      <Button label="No" icon="pi pi-times" text @click="cancel()" />
+      <Button label="No" icon="pi pi-times" text @click="hideDialog()" />
       <Button label="Yes" icon="pi pi-check" text @click="submit()" />
     </template>
   </Dialog>
@@ -24,6 +28,9 @@ export default {
   },
   emits: ["formSubmit"],
   methods: {
+    hideDialog() {
+      this.$emit("formSubmit");
+    },
     submit() {
       this.$toast.add({
         severity: "success",
@@ -31,9 +38,6 @@ export default {
         detail: "You have successfully delete this room.",
         life: 3000,
       });
-      this.$emit("formSubmit");
-    },
-    cancel() {
       this.$emit("formSubmit");
     },
   },

@@ -32,7 +32,7 @@ export default {
     submit() {
       this.$toast.add({
         severity: "success",
-        summary: "Delete Guest",
+        summary: "Deleting Guest",
         detail: "You have successfully delete this guest.",
         life: 3000,
       });

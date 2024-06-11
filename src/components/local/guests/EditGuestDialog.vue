@@ -103,7 +103,7 @@ export default {
     submit() {
       this.$toast.add({
         severity: "success",
-        summary: "Update Guest",
+        summary: "Updating Guest",
         detail: "You have successfully update this guest.",
         life: 3000,
       });
@@ -114,13 +114,13 @@ export default {
     },
   },
   watch: {
-  "formData.duration": function (newValue) {
-    if (typeof newValue === 'string') {
-      const newValDuration = newValue.split(" ");
-      this.formData.duration = parseInt(newValDuration[0]);
-    }
+    "formData.duration": function (newValue) {
+      if (typeof newValue === "string") {
+        const newValDuration = newValue.split(" ");
+        this.formData.duration = parseInt(newValDuration[0]);
+      }
+    },
   },
-},
   mounted() {
     this.$toast = useToast();
   },

@@ -1,14 +1,20 @@
 <template>
-  <Dialog :style="{ width: '450px' }" header="Confirm" :modal="true">
-    <div class="flex align-items-center justify-content-center">
-      <i
-        class="pi pi-exclamation-triangle mr-3"
-        style="font-size: 2rem; color: #f97316"
-      />
-      <span v-if="formData"
-        >Are you sure you want to delete <b>{{ formData.full_name }}</b
-        >?</span
-      >
+  <Dialog
+    :style="{ width: '450px' }"
+    header="Filter"
+    :modal="true"
+    class="p-fluid"
+  >
+    <div class="field">
+      <label for="date_issue">Filter by date issue</label>
+      <Calendar
+        id="date_issue"
+        selectionMode="range" 
+        v-model.lazy="formData.date_issue"
+        :manualInput="false"
+        :showIcon="true"
+        :showButtonBar="true"
+      ></Calendar>
     </div>
     <template #footer>
       <Button label="No" icon="pi pi-times" text @click="hideDialog()" />
@@ -24,16 +30,16 @@ export default {
   props: {
     formData: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   emits: ["formSubmit", "hideDialog"],
   methods: {
     submit() {
       this.$toast.add({
         severity: "success",
-        summary: "Deleting Tenant",
-        detail: "You have successfully delete this tenant.",
+        summary: "Filter success",
+        detail: "You have successfully filter the data.",
         life: 3000,
       });
       this.$emit("formSubmit");

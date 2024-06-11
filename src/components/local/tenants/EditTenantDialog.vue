@@ -104,7 +104,7 @@ export default {
     submit() {
       this.$toast.add({
         severity: "success",
-        summary: "Update Tenant",
+        summary: "Updating Tenant",
         detail: "You have successfully update this tenant.",
         life: 3000,
       });

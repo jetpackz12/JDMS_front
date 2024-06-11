@@ -64,12 +64,8 @@
       />
     </div>
     <template #footer>
-      <Button
-        label="Submit"
-        @click="submit()"
-        icon="pi pi-send"
-        class="p-button-outlined"
-      />
+      <Button label="Cancel" icon="pi pi-times" text="" @click="hideDialog()" />
+      <Button label="Save" icon="pi pi-check" text="" @click="submit()" />
     </template>
   </Dialog>
 </template>
@@ -86,6 +82,9 @@ export default {
   },
   emits: ["formSubmit"],
   methods: {
+    hideDialog() {
+      this.$emit("formSubmit");
+    },
     submit() {
       this.$toast.add({
         severity: "success",

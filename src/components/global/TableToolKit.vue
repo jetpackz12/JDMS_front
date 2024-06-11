@@ -10,11 +10,19 @@
           @click="openNew()"
         />
         <Button
+          v-if="hasDelete"
           label="Delete"
           icon="pi pi-trash"
           severity="danger"
           @click="confirmDeleteSelected()"
           :disabled="!selectedDatas || !selectedDatas.length"
+        />
+        <Button
+          v-if="hasFilter"
+          label="Filter"
+          icon="pi pi-filter"
+          severity="info"
+          @click="filter()"
         />
       </div>
     </template>
@@ -49,6 +57,14 @@
 export default {
   props: {
     selectedDatas: Object,
+    hasDelete: {
+      type: Boolean,
+      default: true
+    },
+    hasFilter: {
+      type: Boolean,
+      default: false
+    },
   },
   methods: {
     openNew() {
@@ -56,6 +72,9 @@ export default {
     },
     confirmDeleteSelected() {
       this.$emit("confirmDeleteSelected");
+    },
+    filter() {
+      this.$emit("filter");
     },
     print() {
       this.$emit("print");

@@ -124,6 +124,10 @@ import EditGuestDialog from '@/components/local/guests/EditGuestDialog.vue';
 import DeleteGuestDialog from '@/components/local/guests/DeleteGuestDialog.vue';
 import DeleteGuestsDialog from '@/components/local/guests/DeleteGuestsDialog.vue';
 
+import AddWaterPaymentDialog from '@/components/local/water-billing-payments/AddWaterPaymentDialog.vue';
+import EditWaterPaymentDialog from '@/components/local/water-billing-payments/EditWaterPaymentDialog.vue';
+import FilterWaterPaymentDialog from '@/components/local/water-billing-payments/FilterWaterPaymentDialog.vue';
+
 import '@/assets/styles.scss';
 
 const app = createApp(App);
@@ -155,6 +159,10 @@ app.component('AddGuestDialog', AddGuestDialog);
 app.component('EditGuestDialog', EditGuestDialog);
 app.component('DeleteGuestDialog', DeleteGuestDialog);
 app.component('DeleteGuestsDialog', DeleteGuestsDialog);
+
+app.component('AddWaterPaymentDialog', AddWaterPaymentDialog);
+app.component('EditWaterPaymentDialog', EditWaterPaymentDialog);
+app.component('FilterWaterPaymentDialog', FilterWaterPaymentDialog);
 
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
