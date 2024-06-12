@@ -56,11 +56,7 @@
           >
             <template #body="slotProps">
               <span class="p-column-title">Transaction</span>
-              {{
-                slotProps.data.transaction === "1"
-                  ? "Water Billing Payment"
-                  : "Electricity Billing Payment"
-              }}
+              {{ slotProps.data.transaction }}
             </template>
           </Column>
           <Column field="description" header="Description" :sortable="true">
@@ -204,6 +200,7 @@ export default {
         if (item.transaction === "1") {
           data = {
             ...item,
+            transaction: "Water Billing Payment",
             description: [
               `Room: ${item.description.room}`,
               `Previous Reading: ${item.description.prev_read}`,
@@ -216,6 +213,7 @@ export default {
         } else {
           data = {
             ...item,
+            transaction: "Electricity Billing Payment",
             description: [
               `Room:  ${item.description.room}`,
               `Unit Consumed: ${item.description.unit_con}`,
