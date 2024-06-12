@@ -3,6 +3,7 @@
     <template v-slot:start>
       <div class="my-2">
         <Button
+          v-if="hasNew"
           label="New"
           icon="pi pi-plus"
           class="mr-2"
@@ -57,13 +58,17 @@
 export default {
   props: {
     selectedDatas: Object,
+    hasNew: {
+      type: Boolean,
+      default: true,
+    },
     hasDelete: {
       type: Boolean,
-      default: true
+      default: true,
     },
     hasFilter: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   methods: {

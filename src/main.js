@@ -132,6 +132,8 @@ import AddElectricityPaymentDialog from '@/components/local/electricity-billing-
 import EditElectricityPaymentDialog from '@/components/local/electricity-billing-payments/EditElectricityPaymentDialog.vue';
 import FilterElectricityPaymentDialog from '@/components/local/electricity-billing-payments/FilterElectricityPaymentDialog.vue';
 
+import FilterReportDialog from '@/components/local/reports/FilterReportDialog.vue';
+
 import '@/assets/styles.scss';
 
 const app = createApp(App);
@@ -171,6 +173,8 @@ app.component('FilterWaterPaymentDialog', FilterWaterPaymentDialog);
 app.component('AddElectricityPaymentDialog', AddElectricityPaymentDialog);
 app.component('EditElectricityPaymentDialog', EditElectricityPaymentDialog);
 app.component('FilterElectricityPaymentDialog', FilterElectricityPaymentDialog);
+
+app.component('FilterReportDialog', FilterReportDialog);
 
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
