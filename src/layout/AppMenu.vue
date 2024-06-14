@@ -7,13 +7,19 @@ const model = ref([
     {
         label: 'Menu',
         items: [
-            { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
+            { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/dashboard' },
             { label: 'Rooms', icon: 'pi pi-fw pi-building', to: '/rooms' },
             { label: 'Tenants', icon: 'pi pi-fw pi-users', to: '/tenants' },
             { label: 'Guests', icon: 'pi pi-fw pi-users', to: '/guests' },
             { label: 'Water Billing Payment', icon: 'pi pi-fw pi-cloud', to: '/waterBillingPayment' },
             { label: 'Electricity Billing Payment', icon: 'pi pi-fw pi-bolt', to: '/electricityBillingPayment' },
             { label: 'Reports', icon: 'pi pi-fw pi-book', to: '/reports' }
+        ]
+    },
+    {
+        label: 'User Settings',
+        items: [
+            { label: 'Change Password', icon: 'pi pi-fw pi-user-edit', to: '/changePassword' }
         ]
     }
 ]);

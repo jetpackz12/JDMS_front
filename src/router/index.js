@@ -6,49 +6,54 @@ const router = createRouter({
     routes: [
         {
             path: '/',
+            name: 'login',
+            component: () => import('../views/pages/Login.vue')
+        },
+        {
+            path: '/dashboard',
             component: AppLayout,
             children: [
                 {
-                    path: '/',
+                    path: '',
                     name: 'dashboard',
-                    component: () => import('../views/pages/Home.vue')
+                    component: () => import('../views/pages/menu/Home.vue')
                 },
                 {
                     path: '/rooms',
                     name: 'rooms',
-                    component: () => import('../views/pages/Rooms.vue')
+                    component: () => import('../views/pages/menu/Rooms.vue')
                 },
                 {
                     path: '/tenants',
                     name: 'tenants',
-                    component: () => import('../views/pages/Tenants.vue')
+                    component: () => import('../views/pages/menu/Tenants.vue')
                 },
                 {
                     path: '/guests',
                     name: 'guests',
-                    component: () => import('../views/pages/Guests.vue')
+                    component: () => import('../views/pages/menu/Guests.vue')
                 },
                 {
                     path: '/waterBillingPayment',
                     name: 'waterBillingPayment',
-                    component: () => import('../views/pages/WaterBillingPayment.vue')
+                    component: () => import('../views/pages/menu/WaterBillingPayment.vue')
                 },
                 {
                     path: '/electricityBillingPayment',
                     name: 'electricityBillingPayment',
-                    component: () => import('../views/pages/ElectricityBillingPayment.vue')
+                    component: () => import('../views/pages/menu/ElectricityBillingPayment.vue')
                 },
                 {
                     path: '/reports',
                     name: 'reports',
-                    component: () => import('../views/pages/Reports.vue')
+                    component: () => import('../views/pages/menu/Reports.vue')
+                },
+                {
+                    path: '/changePassword',
+                    name: 'changePassword',
+                    component: () => import('../views/pages/user-settings/ChangePassword.vue')
                 }
             ]
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: () => import('../views/pages/Login.vue')
         },
         {
             path: '/:catchAll(.*)',
