@@ -19,44 +19,53 @@
           style="border-radius: 53px"
         >
           <div class="text-center mb-5">
-            <img
-              :src="logoUrl"
-              alt="Image"
-              height="50"
-              class="mb-3"
-            />
-            <div class="text-900 text-3xl font-medium mb-3">
-              Welcome!
-            </div>
+            <img :src="logoUrl" alt="Image" height="50" class="mb-3" />
+            <div class="text-900 text-3xl font-medium mb-3">Welcome!</div>
             <span class="text-600 font-medium">Sign in to continue</span>
           </div>
 
           <div>
-            <label for="email1" class="block text-900 text-xl font-medium mb-2"
-              >Email</label
+            <label for="email" class="block text-900 text-xl font-medium mb-2"
+              >Email <br />
+              <small
+                class="p-invalid text-red-600"
+                v-if="submitted && !formData.email"
+                >This is required.</small
+              ></label
             >
             <InputText
-              id="email1"
+              id="email"
               type="text"
               placeholder="Email address"
               class="w-full md:w-30rem mb-5"
               style="padding: 1rem"
-              v-model="email"
+              v-model="formData.email"
+              :invalid="submitted && !formData.email"
+              :required="true"
             />
 
             <label
-              for="password1"
+              for="password"
               class="block text-900 font-medium text-xl mb-2"
-              >Password</label
+              >Password <br />
+              <small
+                class="p-invalid text-red-600"
+                v-if="submitted && !formData.password"
+                >This is required.</small
+              ></label
             >
             <Password
-              id="password1"
-              v-model="password"
+              id="password"
               placeholder="Password"
               :toggleMask="true"
               class="w-full mb-3"
               inputClass="w-full"
+              autocomplete="current-password"
               :inputStyle="{ padding: '1rem' }"
+              :feedback="false"
+              v-model="formData.password"
+              :invalid="submitted && !formData.password"
+              :required="true"
             ></Password>
 
             <div
@@ -68,7 +77,11 @@
                 >Forgot password?</a
               >
             </div>
-            <Button label="Sign In" class="w-full p-3 text-xl"></Button>
+            <Button
+              label="Sign In"
+              class="w-full p-3 text-xl"
+              @click="submit()"
+            ></Button>
           </div>
         </div>
       </div>
@@ -87,10 +100,26 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
-      checked: false,
+      formData: this.getInitialFormData(),
+      submitted: false,
     };
+  },
+  methods: {
+    getInitialFormData() {
+      return {
+        email: null,
+        password: null,
+      };
+    },
+    submit() {
+      this.submitted = true;
+
+      if (!this.formData.email || !this.formData.password) {
+        return;
+      } else {
+        this.$router.push({ name: "dashboard" });
+      }
+    },
   },
   computed: {
     logoUrl() {
